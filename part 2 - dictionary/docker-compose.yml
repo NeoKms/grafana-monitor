@@ -1,0 +1,21 @@
+dictionary:
+  image: "upachko/nginx-sftp:u16p7.4"
+  ports:
+    - "80:80"
+    - "23:22"
+    - "442:442"
+  volumes:
+    - "./app:/var/www/html"
+  links:
+    - dictionaryserver
+    - mariadb
+
+dictionaryserver:
+  image: "brendanburns/dictionary-server"
+
+mariadb:
+  image: "mariadb:10.4"
+  restart: always
+  environment:
+    - MYSQL_ROOT_PASSWORD=docker
+    - MYSQL_DATABASE=dictionary
