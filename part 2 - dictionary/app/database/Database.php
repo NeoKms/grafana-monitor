@@ -94,7 +94,7 @@ class Database
             $this->db->exec("create table dictionary
 (
     word text     default '',
-    description   text     default '{}',
+    description   text     default '',
     date_create   datetime default now()
 );");
             if ($this->db->errorInfo()[0] != '00000') {
