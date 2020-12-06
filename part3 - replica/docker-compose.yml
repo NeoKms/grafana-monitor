@@ -18,7 +18,7 @@ services:
         - "23:22"
         - "442:442"
       volumes:
-        - dicionaryData:/var/www/html
+        - dicionarydata:/var/www/html
       links:
         - dictionaryserver
         - mariadb
@@ -34,7 +34,7 @@ services:
       build: ./mariadb
       restart: always
       volumes:
-        - mariadbData:/var/lib/mariadb
+        - mariadbdata:/var/lib/mariadb
       environment:
         - MYSQL_ROOT_PASSWORD=docker
         - MYSQL_DATABASE=dictionary
