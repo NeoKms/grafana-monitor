@@ -1,0 +1,43 @@
+# docker swarm init && docker service create --name registry --publish published=5000,target=5000 registry:2
+
+# docker-compose build && docker-compose push
+# or
+# docker-compose build
+# docker tag brendanburns/dictionary-server localhost:5000/dictionary-server && docker push localhost:5000/dictionary-server
+# docker tag upachko/nginx-sftp:u16p7.4 localhost:5000/nginx-sftp && docker push localhost:5000/nginx-sftp
+# docker tag mariadb:10.4 localhost:5000/mariadb && docker push localhost:5000/mariadb
+
+# docker stack deploy --compose-file docker-compose.yml stackdemo && docker stack services stackdemo
+version: "3.3"
+services:
+    dictionary:
+      image: "127.0.0.1:5000/nginx-sftp"
+      build: ./dictionary
+      ports:
+        - "80:80"
+        - "23:22"
+        - "442:442"
+      volumes:
+        - dicionarydata:/var/www/html
+      links:
+        - dictionaryserver
+        - mariadb
+      deploy:
+        replicas: 6 
+
+    dictionaryserver:
+      image: "127.0.0.1:5000/dictionary-server"
+      build: ./dictionaryserver
+
+    mariadb:
+      image: "127.0.0.1:5000/mariadb"
+      build: ./mariadb
+      restart: always
+      volumes:
+        - mariadbdata:/var/lib/mariadb
+      environment:
+        - MYSQL_ROOT_PASSWORD=docker
+        - MYSQL_DATABASE=dictionary
+volumes:
+  dicionarydata:
+  mariadbdata:

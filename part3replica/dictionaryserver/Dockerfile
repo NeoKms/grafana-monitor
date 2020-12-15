@@ -1,0 +1,1 @@
+FROM brendanburns/dictionary-server
