@@ -7,8 +7,8 @@ require_once "database/Database.php";
 use classes\database\Database;
 
 $input = json_decode(file_get_contents('php://input'),true);
-if (isset($input['word'])) $input['word']=transliterate($input['word']);
-if (isset($input['description'])) $input['description']=transliterate($input['description']);
+//if (isset($input['word'])) $input['word']=transliterate($input['word']);
+//if (isset($input['description'])) $input['description']=transliterate($input['description']);
 
 if (empty($input) || !isset($input['method'])) {
     send_resp(['status'=>false,'result'=>'empty method']);
