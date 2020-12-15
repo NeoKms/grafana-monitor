@@ -1,5 +1,6 @@
 dictionary:
   image: "upachko/nginx-sftp:u16p7.4"
+  container_name: "dictionary"
   ports:
     - "80:80"
     - "23:22"
@@ -14,8 +15,11 @@ dictionaryserver:
   image: "brendanburns/dictionary-server"
 
 mariadb:
-  image: "mariadb:latest"
+  container_name: "mariadb"
+  build: ./mariadb
   restart: always
   environment:
     - MYSQL_ROOT_PASSWORD=docker
     - MYSQL_DATABASE=dictionary
+    - MYSQL_USER=newuser
+    - MYSQL_PASSWORD=userpass

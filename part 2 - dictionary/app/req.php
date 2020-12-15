@@ -7,8 +7,6 @@ require_once "database/Database.php";
 use classes\database\Database;
 
 $input = json_decode(file_get_contents('php://input'),true);
-//if (isset($input['word'])) $input['word']=transliterate($input['word']);
-//if (isset($input['description'])) $input['description']=transliterate($input['description']);
 
 if (empty($input) || !isset($input['method'])) {
     send_resp(['status'=>false,'result'=>'empty method']);
@@ -34,6 +32,9 @@ if (empty($input) || !isset($input['method'])) {
         send_resp(['status'=>false,'result'=>'']);
     }
 } elseif ($input['method']=='set_word'){
+    if (empty($input['word']) || empty($input['description'])){
+        send_resp(['status'=>false,'result'=>'empty inputs']);
+    }
     $data = [
         'word'=>$input['word'],
         'description'=>$input['description'],
@@ -75,18 +76,18 @@ function getWords($param)
 }
 function getTable($data) {
     if (empty($data)) return '';
-    $table = '
-    <h1>Словарь:</h1>
-    <table border="1">
-        <thead>
+    $table = '<div class="table table-striped">
+    <h2>Словарь:</h2>
+    <table border="1"  class="table">
+        <thead class="thead-light">
         <tr>
-            <td>#</td>
-            <td> Слово </td>
-            <td> Описание </td>
-            <td> Дата обновления </td>
+            <th scope="col">#</th>
+            <th scope="col"> Слово </th>
+            <th scope="col"> Описание </th>
+            
         </tr>
         </thead><tbody>
-    ';
+    ';//<th scope="col"> Дата обновления </th>
     foreach ($data as $key=>$oneElement) {
         $key++;
         $oneElement['date_create'] = date('d.m.Y H:i:s',strtotime($oneElement['date_create']));
@@ -95,11 +96,11 @@ function getTable($data) {
         <td>{$key}</td>
         <td>{$oneElement['word']}</td>
         <td>{$oneElement['description']}</td>
-        <td>{$oneElement['date_create']}</td>
+        
         </tr>
-        ";
+        ";//<td>{$oneElement['date_create']}</td>
     }
-    $table.=' </tbody></table>';
+    $table.=' </tbody></table></div>';
     return $table;
 }
 function setNewWord($data)

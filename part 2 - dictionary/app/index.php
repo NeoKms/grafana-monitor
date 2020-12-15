@@ -5,22 +5,25 @@
 ?>
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Добавление слова</h1>
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+</head>
+<body class="container text-center main-body">
+<h2>Добавление слова</h2>
 <label>
-	Слово:
-	<input name="word" id="word" value="" onchange="checkWord(this)" oninput="checkWord(this)">
+	<input name="word" id="word" value="" type="text" class="form-control" placeholder="Слово" onchange="checkWord(this)" oninput="checkWord(this)">
 </label>
 </br>
 <label>Описание:</label>
 </br>
 <textarea name="description" id="description" rows="10" cols="100"></textarea>
 </br>
-<button onclick="setWord()"> Добавить </button>
+<button type="button" class="btn btn-primary" onclick="setWord()"> Добавить </button>
 </br></br>
 <label>
-	Поиск:
-	<input id="search-word" placeholder="начните вводить" onchange="getTable()" oninput="getTable()">
+	<input id="search-word" placeholder="начните вводить" type="text" class="form-control" onchange="getTable()" oninput="getTable()">
 </label>
 <div id="data-table"></div>
 </body>
