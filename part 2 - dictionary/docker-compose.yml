@@ -14,7 +14,7 @@ dictionaryserver:
   image: "brendanburns/dictionary-server"
 
 mariadb:
-  image: "mariadb:10.4"
+  image: "mariadb:latest"
   restart: always
   environment:
     - MYSQL_ROOT_PASSWORD=docker
