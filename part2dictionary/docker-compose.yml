@@ -1,5 +1,5 @@
 dictionary:
-  image: "upachko/nginx-sftp:u16p7.4"
+  build: ./app
   container_name: "dictionary"
   ports:
     - "80:80"
