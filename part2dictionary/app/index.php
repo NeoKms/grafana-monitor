@@ -10,7 +10,7 @@ if (empty($uri[1])) {
     $input = json_decode(file_get_contents('php://input'), true);
     if ($uri[1] !== 'api') {
         $uri[2] = 'checkword';
-        $input['word'] = $uri[1];
+        $input['word'] = urldecode($uri[1]);
     }
     try {
         resp((new requestHandler($input))->{$uri[2]}());
@@ -20,5 +20,6 @@ if (empty($uri[1])) {
 }
 // ответ от сервера
 function resp($text) {
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode($text,271);exit;
 }

@@ -11,9 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
 </head>
 <body class="container text-center main-body">
-<h2>Добавление слова</h2>
+<h2>Добавление термина</h2>
 <label>
-	<input name="word" id="word" value="" type="text" class="form-control" placeholder="Слово" onchange="checkWord(this)" oninput="checkWord(this)">
+	<input name="word" id="word" value="" type="text" class="form-control" placeholder="Термин" onchange="checkWord(this)" oninput="checkWord(this)">
 </label>
 </br>
 <label>Описание:</label>

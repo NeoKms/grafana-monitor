@@ -36,7 +36,7 @@ class requestHandler {
     private function __getTable($data) {
         if (empty($data)) return '';
         $table = '<div class="table table-striped">
-        <h2>Словарь:</h2>
+        <h2>Глоссарий:</h2>
         <table border="1"  class="table">
             <thead class="thead-light">
             <tr>
@@ -74,7 +74,7 @@ class requestHandler {
         }
         $result = '';
         if (!empty($indbword)){
-            $result .= $indbword;
+            $result .= $indbword[0]['description'];
         }
         if (!empty($head) && $httpCode==200) {
             $result .= (empty($result)?:'|').$head;
